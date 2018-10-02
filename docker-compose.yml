@@ -1,0 +1,38 @@
+version: '3.6'
+services:
+  bamboo:
+    image: stellarity/atlassian-sdk-pwsh
+    ports:
+      - "6990:6990"
+    volumes:
+      - ~/.m2:/root/.m2
+      - ./bamboo:/opt/bamboo      
+      - ./plugin:/opt/plugin
+      - ./bootstrap:/bootstrap
+    command: /bootstrap/bamboo.sh
+    stdin_open: true
+    environment:
+      - BAMBOO_VERSION=${BAMBOO_VERSION-6.4.0}
+    networks:
+      mynet:
+        aliases:
+          - bamboo
+  webtest:
+    image: stellarity/webtest
+    volumes:
+      - ~/.m2:/root/.m2
+      - ~/.gradle/caches/modules-2:/root/.gradle/caches/modules-2
+      - ~/.gradle/wrapper:/root/.gradle/wrapper
+      - ./bamboo:/opt/bamboo
+      - ./bootstrap:/bootstrap      
+      - ./test:/opt/test
+    command: /bootstrap/webtest.sh
+    environment:
+      - BAMBOO_HOME=/opt/bamboo/home
+      - BAMBOO_URL=http://bamboo:6990
+    networks:
+      mynet:
+        aliases:
+          - webtest
+networks:
+  mynet:

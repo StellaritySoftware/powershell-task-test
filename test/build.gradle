@@ -45,16 +45,9 @@ test {
     systemProperty("password", (System.getProperty("password") != null ? System.getProperty("password") : "admin"))
     systemProperty("geb.env", System.getProperty("geb.env"))
 
-    filter{
-//
-////        includeTestsMatching "ParseXmlTest"
-////        includeTestsMatching "UseFileNameCollisionTest"
-////        includeTestsMatching "UseTaskNameCollisionTest"
-////        includeTestsMatching "UseTaskAndFileNamesCollisionTest"
-////        includeTestsMatching "CheckPatternsTest"
-////        includeTestsMatching "UseSubdirectoryTest"
-        includeTestsMatching "EditFieldsTest"
-    }
+//    filter{
+//        includeTestsMatching "ScriptFromFileTest"
+//    }
 
     systemProperties "geb.build.reportsDir": "$reportsDir/geb"
 }

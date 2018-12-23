@@ -51,6 +51,11 @@ class PowerShellTaskConfigurationPage extends Page {
         waitFor{collapseSection.isDisplayed()}
     }
 
+    def scrollTo500PX(){
+        js.exec("window.scrollTo(500, 500)")
+        waitFor{scriptFile.isDisplayed()}
+    }
+
     def setEnvironmenVariables(String variables) {
         js."document.querySelector('#psEnvironment').scrollIntoView()"
         environmentVariable = variables

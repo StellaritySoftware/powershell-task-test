@@ -48,6 +48,7 @@ test {
 //    filter{
 //        includeTestsMatching "ScriptFromFileTest"
 //        includeTestsMatching "SetArgumentTest"
+//        includeTestsMatching "SetEnvironmentVariable"
 //    }
 
     systemProperties "geb.build.reportsDir": "$reportsDir/geb"
